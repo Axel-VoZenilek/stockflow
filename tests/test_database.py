@@ -1,18 +1,14 @@
+import os 
+os.environ["STOCKFLOW_ENV"] = "test"
 from database.schema import create_db       
 from database.connection import DatabaseConnection
 import unittest
 import sqlite3
-import os 
 from common.config import get_database_path
 DB_TEST_PATH = get_database_path()
 class TestDatabaseConnection(unittest.TestCase):
     def setUp(self):
-        # Create the database schema before each test
-        if os.path.exists(DB_TEST_PATH):
-            os.remove(DB_TEST_PATH)
-        
-        create_db(DB_TEST_PATH)
-        self.db = DatabaseConnection(DB_TEST_PATH)
+        self.db = DatabaseConnection()
 
     def tearDown(self):
         # Close the database connection after each test
