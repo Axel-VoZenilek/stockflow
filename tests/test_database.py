@@ -3,7 +3,8 @@ from database.connection import DatabaseConnection
 import unittest
 import sqlite3
 import os 
-DB_TEST_PATH = os.path.join(os.path.dirname(__file__), 'test_stockflow.db')
+from common.config import get_database_path
+DB_TEST_PATH = get_database_path()
 class TestDatabaseConnection(unittest.TestCase):
     def setUp(self):
         # Create the database schema before each test
